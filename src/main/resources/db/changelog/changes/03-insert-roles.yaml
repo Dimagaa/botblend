@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert_roles
+      author: Dmytro Martyshchuk
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: ROLE_ADMIN
