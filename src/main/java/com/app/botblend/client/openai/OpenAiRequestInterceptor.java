@@ -1,4 +1,4 @@
-package com.app.botblend.client;
+package com.app.botblend.client.openai;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

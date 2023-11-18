@@ -1,9 +1,9 @@
 package com.app.botblend.contoller;
 
-import com.app.botblend.dto.UserDto;
-import com.app.botblend.dto.UserLoginRequestDto;
-import com.app.botblend.dto.UserLoginResponseDto;
-import com.app.botblend.dto.UserRegisterRequestDto;
+import com.app.botblend.dto.user.UserDto;
+import com.app.botblend.dto.user.UserLoginRequestDto;
+import com.app.botblend.dto.user.UserLoginResponseDto;
+import com.app.botblend.dto.user.UserRegisterRequestDto;
 import com.app.botblend.security.AuthenticationService;
 import com.app.botblend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
