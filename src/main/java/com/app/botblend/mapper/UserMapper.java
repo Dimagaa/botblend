@@ -1,8 +1,8 @@
 package com.app.botblend.mapper;
 
 import com.app.botblend.config.MapperConfig;
-import com.app.botblend.dto.UserDto;
-import com.app.botblend.dto.UserRegisterRequestDto;
+import com.app.botblend.dto.user.UserDto;
+import com.app.botblend.dto.user.UserRegisterRequestDto;
 import com.app.botblend.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

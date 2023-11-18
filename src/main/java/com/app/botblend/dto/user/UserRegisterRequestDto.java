@@ -1,4 +1,4 @@
-package com.app.botblend.dto;
+package com.app.botblend.dto.user;
 
 import com.app.botblend.validation.FieldMatch;
 import io.swagger.v3.oas.annotations.media.Schema;

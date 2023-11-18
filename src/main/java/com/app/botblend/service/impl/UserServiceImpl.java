@@ -1,7 +1,7 @@
 package com.app.botblend.service.impl;
 
-import com.app.botblend.dto.UserDto;
-import com.app.botblend.dto.UserRegisterRequestDto;
+import com.app.botblend.dto.user.UserDto;
+import com.app.botblend.dto.user.UserRegisterRequestDto;
 import com.app.botblend.exception.RegistrationException;
 import com.app.botblend.mapper.UserMapper;
 import com.app.botblend.model.Role;

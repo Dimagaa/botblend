@@ -1,7 +1,7 @@
 package com.app.botblend.security;
 
-import com.app.botblend.dto.UserLoginRequestDto;
-import com.app.botblend.dto.UserLoginResponseDto;
+import com.app.botblend.dto.user.UserLoginRequestDto;
+import com.app.botblend.dto.user.UserLoginResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
