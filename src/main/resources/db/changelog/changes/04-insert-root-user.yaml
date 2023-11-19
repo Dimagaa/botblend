@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: insert_root_user
+      id: 04_insert_root_user
       author: Dmytro Martyshchuk
       changes:
         - insert:

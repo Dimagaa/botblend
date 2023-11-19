@@ -24,7 +24,7 @@ public class TelegramMessageHandlerManager {
     private BotApiMethodMessage getDefaultMethod(Update update) {
         return SendMessage.builder()
                 .chatId(update.getMessage().getChatId())
-                .text("Cannot handle message")
+                .text("Cannot handle content")
                 .build();
     }
 }

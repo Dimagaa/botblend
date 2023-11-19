@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: create_roles_table
+      id: 02_create_roles_table
       author: Dmytro Martyshchuk
       changes:
         - createTable:

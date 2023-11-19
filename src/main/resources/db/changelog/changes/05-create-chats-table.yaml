@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 05_create_chats_table
+      author: Dmytro Martyshchuk
+      changes:
+        - createTable:
+            tableName: chats
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: external_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
