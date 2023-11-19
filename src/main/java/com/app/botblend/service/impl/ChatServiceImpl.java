@@ -30,10 +30,9 @@ public class ChatServiceImpl implements ChatService {
         Chat chat = chatRepository.findById(id).orElseThrow();
 
         Message message = messageMapper.toModel(requestDto, chat);
+        chat.getMessages().add(message);
         messageRepository.save(message);
-
         messageSenderService.sendMessage(message);
-
         return chatMapper.toDto(chat);
     }
 

@@ -18,6 +18,8 @@ public class OpenAiMessageHandler implements MessageHandler {
     private static final int DEFAULT_CHOICE = 0;
 
     private final OpenAiClient openAiClient;
+    private final OpenAiMessagePersistenceService openAiMessagePersistenceService;
+
     @Value("${openai.api.default-model}")
     private String openaiModel;
 
@@ -25,25 +27,34 @@ public class OpenAiMessageHandler implements MessageHandler {
     public BotApiMethodMessage handle(Update update) {
         Message request = update.getMessage();
 
-        OpenAiMessage openAiMessage = OpenAiMessage.builder(
-                        OpenAiMessage.Role.USER, request.getText())
-                .build();
-        CompletionRequest completionRequest = CompletionRequest.builder(
-                        openaiModel, openAiMessage)
-                .maxTokens(MAX_TOKEN)
-                .build();
-        OpenAiMessage responseMessage = openAiClient.createChatCompletion(completionRequest)
-                .choices().get(DEFAULT_CHOICE)
-                .message();
+        OpenAiMessage openAiRequestMessage = OpenAiMessage.builder(
+                OpenAiMessage.Role.USER,
+                request.getText()
+        ).build();
+        openAiMessagePersistenceService.persist(request.getChatId(), openAiRequestMessage);
+
+        OpenAiMessage openAiResponseMessage = requestOpenaiMessage(openAiRequestMessage);
+        openAiMessagePersistenceService.persist(request.getChatId(), openAiResponseMessage);
 
         return SendMessage.builder()
                 .chatId(request.getChatId())
-                .text(responseMessage.content())
+                .text(openAiResponseMessage.content())
                 .build();
     }
 
     @Override
     public boolean isSupport(Update update) {
         return update.hasMessage();
+    }
+
+    private OpenAiMessage requestOpenaiMessage(OpenAiMessage request) {
+        CompletionRequest completionRequest = CompletionRequest.builder(
+                        openaiModel, request)
+                .maxTokens(MAX_TOKEN)
+                .build();
+
+        return openAiClient.createChatCompletion(completionRequest)
+                .choices().get(DEFAULT_CHOICE)
+                .message();
     }
 }
