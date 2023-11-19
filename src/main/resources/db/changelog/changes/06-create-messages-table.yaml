@@ -9,6 +9,7 @@ databaseChangeLog:
               - column:
                   name: id
                   type: bigint
+                  autoIncrement: true
                   constraints:
                     primaryKey: true
               - column:
@@ -26,7 +27,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: content
-                  type: varchar(255)
+                  type: varchar
                   constraints:
                     nullable: false
               - column:

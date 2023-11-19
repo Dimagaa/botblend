@@ -13,4 +13,6 @@ public interface ChatRepository extends JpaRepository<Chat, Long> {
 
     @EntityGraph(attributePaths = "messages")
     Optional<Chat> findById(Long id);
+
+    Optional<Chat> findByExternalId(Long externalId);
 }

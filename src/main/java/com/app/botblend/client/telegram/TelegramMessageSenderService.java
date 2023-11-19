@@ -14,7 +14,7 @@ public class TelegramMessageSenderService implements MessageSenderService {
     @Override
     public boolean sendMessage(Message message) {
         SendMessage sendMessage = SendMessage.builder()
-                .chatId(message.getChat().getId())
+                .chatId(message.getChat().getExternalId())
                 .text(message.getContent())
                 .build();
         telegramBotClient.executeMethod(sendMessage);
