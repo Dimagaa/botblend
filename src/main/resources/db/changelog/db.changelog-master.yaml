@@ -7,3 +7,8 @@ databaseChangeLog:
       file: db/changelog/changes/03-insert-roles.yaml
   - include:
       file: db/changelog/changes/04-insert-root-user.yaml
+  - include:
+      file: db/changelog/changes/05-create-chats-table.yaml
+  - include:
+      file: db/changelog/changes/06-create-messages-table.yaml
+

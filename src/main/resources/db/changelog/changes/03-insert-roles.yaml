@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: insert_roles
+      id: 03_insert_roles
       author: Dmytro Martyshchuk
       changes:
         - insert:
