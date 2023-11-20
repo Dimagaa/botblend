@@ -1,5 +1,6 @@
-package com.app.botblend.client.telegram;
+package com.app.botblend.service.impl;
 
+import com.app.botblend.client.telegram.TelegramBotClient;
 import com.app.botblend.model.Message;
 import com.app.botblend.service.MessageSenderService;
 import lombok.RequiredArgsConstructor;

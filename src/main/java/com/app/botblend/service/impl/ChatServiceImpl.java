@@ -2,6 +2,7 @@ package com.app.botblend.service.impl;
 
 import com.app.botblend.dto.chat.ChatDto;
 import com.app.botblend.dto.chat.MessageSendRequestDto;
+import com.app.botblend.exception.EntityNotFoundException;
 import com.app.botblend.mapper.ChatMapper;
 import com.app.botblend.mapper.MessageMapper;
 import com.app.botblend.model.Chat;
@@ -27,12 +28,15 @@ public class ChatServiceImpl implements ChatService {
     @Transactional
     @Override
     public ChatDto sendMessage(Long id, MessageSendRequestDto requestDto) {
-        Chat chat = chatRepository.findById(id).orElseThrow();
-
+        Chat chat = chatRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Cannot send message: Not found chat with id: " + id
+                ));
         Message message = messageMapper.toModel(requestDto, chat);
         chat.getMessages().add(message);
         messageRepository.save(message);
         messageSenderService.sendMessage(message);
+
         return chatMapper.toDto(chat);
     }
 
@@ -48,6 +52,8 @@ public class ChatServiceImpl implements ChatService {
     public ChatDto getById(Long id) {
         return chatRepository.findById(id)
                 .map(chatMapper::toDto)
-                .orElseThrow();
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Not found chat with id: " + id
+                ));
     }
 }
