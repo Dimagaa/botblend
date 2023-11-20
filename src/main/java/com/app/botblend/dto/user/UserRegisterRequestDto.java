@@ -1,6 +1,7 @@
 package com.app.botblend.dto.user;
 
 import com.app.botblend.validation.FieldMatch;
+import com.app.botblend.validation.ValidationConstants;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,16 +15,14 @@ public record UserRegisterRequestDto(
         @Schema(example = "user@example.com")
         String email,
 
-        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$",
-                message = "Minimum eight characters, at least one uppercase"
-                          + " letter, one lowercase letter and one number")
+        @Pattern(regexp = ValidationConstants.PASSWORD_REGEXP,
+                message = ValidationConstants.INVALID_PASSWORD_MESSAGE)
         @NotBlank
         @Schema(example = "Pwd12345")
         String password,
 
-        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$",
-                message = "Minimum eight characters, at least one uppercase"
-                          + " letter, one lowercase letter and one number")
+        @Pattern(regexp = ValidationConstants.PASSWORD_REGEXP,
+                message = ValidationConstants.INVALID_PASSWORD_MESSAGE)
         @NotBlank
         @Schema(example = "Pwd12345")
         String repeatPassword,
