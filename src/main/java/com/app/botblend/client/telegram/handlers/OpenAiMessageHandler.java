@@ -3,6 +3,7 @@ package com.app.botblend.client.telegram.handlers;
 import com.app.botblend.client.openai.OpenAiClient;
 import com.app.botblend.client.openai.model.CompletionRequest;
 import com.app.botblend.client.openai.model.OpenAiMessage;
+import feign.RetryableException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @RequiredArgsConstructor
 @Component
 public class OpenAiMessageHandler implements MessageHandler {
-    private static final int MAX_TOKEN = 100;
+    private static final String OVERLOADED_SERVER_MESSAGE = "Server overloaded. Please try again";
     private static final int DEFAULT_CHOICE = 0;
 
     private final OpenAiClient openAiClient;
@@ -50,11 +51,18 @@ public class OpenAiMessageHandler implements MessageHandler {
     private OpenAiMessage requestOpenaiMessage(OpenAiMessage request) {
         CompletionRequest completionRequest = CompletionRequest.builder(
                         openaiModel, request)
-                .maxTokens(MAX_TOKEN)
                 .build();
 
-        return openAiClient.createChatCompletion(completionRequest)
-                .choices().get(DEFAULT_CHOICE)
-                .message();
+        try {
+            return openAiClient.createChatCompletion(completionRequest)
+                    .choices().get(DEFAULT_CHOICE)
+                    .message();
+
+        } catch (RetryableException e) {
+            return OpenAiMessage.builder(
+                            OpenAiMessage.Role.SYSTEM,
+                            OVERLOADED_SERVER_MESSAGE)
+                    .build();
+        }
     }
 }
