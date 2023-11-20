@@ -1,8 +1,10 @@
-package com.app.botblend.client.telegram.handlers;
+package com.app.botblend.handlers;
 
 import com.app.botblend.client.openai.OpenAiClient;
 import com.app.botblend.client.openai.model.CompletionRequest;
 import com.app.botblend.client.openai.model.OpenAiMessage;
+import com.app.botblend.client.telegram.MessageHandler;
+import com.app.botblend.service.MessagePersistenceService;
 import feign.RetryableException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +21,7 @@ public class OpenAiMessageHandler implements MessageHandler {
     private static final int DEFAULT_CHOICE = 0;
 
     private final OpenAiClient openAiClient;
-    private final OpenAiMessagePersistenceService openAiMessagePersistenceService;
+    private final MessagePersistenceService<OpenAiMessage> messagePersistenceService;
 
     @Value("${openai.api.default-model}")
     private String openaiModel;
@@ -32,10 +34,10 @@ public class OpenAiMessageHandler implements MessageHandler {
                 OpenAiMessage.Role.USER,
                 request.getText()
         ).build();
-        openAiMessagePersistenceService.persist(request.getChatId(), openAiRequestMessage);
+        messagePersistenceService.persist(request.getChatId(), openAiRequestMessage);
 
         OpenAiMessage openAiResponseMessage = requestOpenaiMessage(openAiRequestMessage);
-        openAiMessagePersistenceService.persist(request.getChatId(), openAiResponseMessage);
+        messagePersistenceService.persist(request.getChatId(), openAiResponseMessage);
 
         return SendMessage.builder()
                 .chatId(request.getChatId())
@@ -45,7 +47,7 @@ public class OpenAiMessageHandler implements MessageHandler {
 
     @Override
     public boolean isSupport(Update update) {
-        return update.hasMessage();
+        return update.getMessage().hasText();
     }
 
     private OpenAiMessage requestOpenaiMessage(OpenAiMessage request) {

@@ -1,17 +1,20 @@
-package com.app.botblend.client.telegram.handlers;
+package com.app.botblend.service.impl;
 
 import com.app.botblend.client.openai.model.OpenAiMessage;
 import com.app.botblend.model.Chat;
 import com.app.botblend.model.Message;
 import com.app.botblend.repository.ChatRepository;
 import com.app.botblend.repository.MessageRepository;
+import com.app.botblend.service.MessagePersistenceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Component
-public class OpenAiMessagePersistenceService {
+public class OpenAiMessagePersistenceService implements
+        MessagePersistenceService<OpenAiMessage> {
+
     private final ChatRepository chatRepository;
     private final MessageRepository messageRepository;
 

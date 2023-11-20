@@ -1,6 +1,5 @@
 package com.app.botblend.client.telegram;
 
-import com.app.botblend.client.telegram.handlers.MessageHandler;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
