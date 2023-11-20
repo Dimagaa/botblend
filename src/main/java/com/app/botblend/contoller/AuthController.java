@@ -1,11 +1,8 @@
 package com.app.botblend.contoller;
 
-import com.app.botblend.dto.user.UserDto;
 import com.app.botblend.dto.user.UserLoginRequestDto;
 import com.app.botblend.dto.user.UserLoginResponseDto;
-import com.app.botblend.dto.user.UserRegisterRequestDto;
 import com.app.botblend.security.AuthenticationService;
-import com.app.botblend.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -15,22 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Authentication API", description = "Register and authenticate users")
+@Tag(name = "Authentication API", description = "Authenticate users")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    private final UserService userService;
     private final AuthenticationService authenticationService;
-
-    @Operation(
-            summary = "Register a new user",
-            description = "Register a new user with the provided information"
-    )
-    @PostMapping("/register")
-    UserDto register(@RequestBody @Valid UserRegisterRequestDto requestDto) {
-        return userService.register(requestDto);
-    }
 
     @Operation(
             summary = "User Login",
