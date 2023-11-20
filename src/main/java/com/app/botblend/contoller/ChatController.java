@@ -5,6 +5,7 @@ import com.app.botblend.dto.chat.MessageSendRequestDto;
 import com.app.botblend.service.ChatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -53,7 +54,7 @@ public class ChatController {
     @PostMapping("/{chatId}")
     public ChatDto sendMessage(
             @PathVariable Long chatId,
-            @RequestBody MessageSendRequestDto message
+            @RequestBody @Valid MessageSendRequestDto message
     ) {
         return chatService.sendMessage(chatId, message);
     }

@@ -11,8 +11,6 @@ import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
