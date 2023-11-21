@@ -16,8 +16,8 @@ The service also includes a user-friendly web interface for easy administration.
 - **PostgreSQL:** Used as the relational database to store book and user data.
 - **Liquibase:** Library for tracking, managing, and applying database schema changes.
 - **Docker:** A platform for delivering software in containers.
-- **Telegram API** Integrated to harness the capabilities of Telegram bots, enabling seamless communication with OpenAI Chat.
-- **OpenAI API** Utilized to leverage advanced natural language processing capabilities, enhancing the intelligence of the system.
+- **Telegram API:** Integrated to harness the capabilities of Telegram bots, enabling seamless communication with OpenAI Chat.
+- **OpenAI API:** Utilized to leverage advanced natural language processing capabilities, enhancing the intelligence of the system.
 
 ## Video Presentation
 
