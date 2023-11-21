@@ -6,6 +6,7 @@ import com.app.botblend.model.Message;
 import com.app.botblend.repository.ChatRepository;
 import com.app.botblend.repository.MessageRepository;
 import com.app.botblend.service.MessagePersistenceService;
+import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,7 @@ public class OpenAiMessagePersistenceService implements
     private Message mapToEntity(Chat chat, OpenAiMessage openAiMessage) {
         Message message = new Message();
         message.setChat(chat);
+        message.setCreatedAt(LocalDateTime.now());
         message.setSender(openAiMessage.role());
         message.setContent(openAiMessage.content());
         return message;

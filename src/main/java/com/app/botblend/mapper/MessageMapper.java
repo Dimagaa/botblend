@@ -12,6 +12,8 @@ import org.mapstruct.Mapping;
 public interface MessageMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "deleted", ignore = true)
+    @Mapping(target = "createdAt",
+            expression = "java(LocalDateTime.now())")
     Message toModel(MessageSendRequestDto dto, Chat chat);
 
     MessageDto toDto(Message model);
