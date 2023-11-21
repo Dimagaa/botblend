@@ -121,7 +121,8 @@ services.
 
 7. Alternatively, you can use Postman for API
    testing: [BotBlend Postman Collection](https://www.postman.com/lively-spaceship-141404/workspace/botblend).
-   > [!NOTE]
-   > Fork collections and environments to use them
+> [!NOTE]
+> Fork collections and environments to use them
    
+
 ---
