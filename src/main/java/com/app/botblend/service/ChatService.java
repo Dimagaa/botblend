@@ -1,13 +1,15 @@
 package com.app.botblend.service;
 
 import com.app.botblend.dto.chat.ChatDto;
+import com.app.botblend.dto.chat.MessageDto;
 import com.app.botblend.dto.chat.MessageSendRequestDto;
 import java.util.List;
+import org.springframework.data.domain.Pageable;
 
 public interface ChatService {
-    ChatDto sendMessage(Long chatId, MessageSendRequestDto requestDto);
+    MessageDto sendMessage(Long chatId, MessageSendRequestDto requestDto);
 
-    List<ChatDto> findAll();
+    List<ChatDto> findAll(Pageable pageable);
 
-    ChatDto getById(Long id);
+    List<MessageDto> getMessagesByChatId(Long id, Pageable pageable);
 }
