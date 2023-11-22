@@ -1,4 +1,4 @@
-name: Deploy to ECS
+name: Deploy to ECR
 
 on:
   push:
@@ -6,12 +6,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  AWS_ASSUME_ROLE: arn:aws:iam::410123344539:role/github-book-store-repository
-  ECR_REPOSITORY: botblend
-  ECS_SERVICE: botblend
-  ECS_CLUSTER: BotBlendCluster
-  ECS_TASK_DEFINITION: .github/workflows/task-definition.json
-  CONTAINER_NAME: botblend
+  AWS_ASSUME_ROLE: arn:aws:iam::410123344539:role/github-botblend-role
 
 permissions:
   id-token: write
@@ -53,24 +48,8 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REGISTRY_ALIAS: w5z6u3w9
-          REPOSITORY: online-book-store
+          REPOSITORY: botblend
           IMAGE_TAG: latest
         run: |
           docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
-
-          - name: Fill in the new image ID in the Amazon ECS task definition
-              id: task-def
-              uses: aws-actions/amazon-ecs-render-task-definition@v1
-              with:
-                task-definition: task-definition.json
-                container-name: my-container
-                image: ${{ steps.build-image.outputs.image }}
-
-              - name: Deploy Amazon ECS task definition
-                uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-                with:
-                  task-definition: ${{ steps.task-def.outputs.task-definition }}
-                  service: my-service
-                  cluster: my-cluster
-                  wait-for-service-stability: true

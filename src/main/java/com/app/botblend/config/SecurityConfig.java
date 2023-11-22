@@ -29,8 +29,9 @@ public class SecurityConfig {
     private static final String AUTHORIZED_URL = "/auth/**";
     private static final String ERROR_PAGE_URL = "/error";
     private static final String SWAGGER_UI_ENDPOINT = "/swagger-ui/**";
-
     private static final String SWAGGER_API_ENDPOINT = "/v3/api-docs/**";
+    private static final String HEALTHCHECK_ENDPOINT = "/healthcheck";
+
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final ExceptionHandlerFilter exceptionHandlerFilter;
@@ -55,7 +56,8 @@ public class SecurityConfig {
                                         AUTHORIZED_URL,
                                         ERROR_PAGE_URL,
                                         SWAGGER_UI_ENDPOINT,
-                                        SWAGGER_API_ENDPOINT
+                                        SWAGGER_API_ENDPOINT,
+                                        HEALTHCHECK_ENDPOINT
                                 )
                                 .permitAll()
                                 .anyRequest()
