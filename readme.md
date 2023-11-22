@@ -7,6 +7,10 @@
 BotBlend integrates Telegram bot with Chat GPT, offering a unified platform for smooth communication.
 The service also includes a user-friendly web interface for easy administration.
 
+<img src="paintings/telegram-qr.png" width="300rem" alt="https://t.me/botblend_chat_bot">
+
+Explore the API: [Swagger Documentation](http://ec2-51-20-251-34.eu-north-1.compute.amazonaws.com/api/swagger-ui/index.html#/)
+
 ## Technologies and Tools
 
 - **Spring Boot:** A Java-based framework for building web applications.
@@ -22,6 +26,7 @@ The service also includes a user-friendly web interface for easy administration.
 ## Video Presentation
 
 [![https://youtu.be/je94b48P8GA?si=BjrNyUUWF0zb-knZ](https://img.youtube.com/vi/USgx101zYx0/0.jpg)](https://youtu.be/USgx101zYx0)
+
 
 ## Functionalities
 
@@ -44,6 +49,8 @@ Facilitates the creation of new administrative users, updating user information 
 Empowers administrative users to explore and manage chats and messages. Additionally, users can send messages to specific chats.
 
 ## Setup and Usage
+
+### 
 
 ### Environment Configuration (.env)
 
