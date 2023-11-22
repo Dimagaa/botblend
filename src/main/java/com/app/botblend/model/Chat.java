@@ -10,12 +10,14 @@ import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 @Data
+@NoArgsConstructor
 @Entity
 @SQLDelete(sql = "UPDATE  chats SET is_deleted = false WHERE id = ?")
 @Where(clause = "is_deleted = false")
@@ -36,10 +38,6 @@ public class Chat {
 
     @Column(nullable = false)
     private boolean isDeleted;
-
-    public Chat() {
-
-    }
 
     public Chat(Long externalId) {
         this.externalId = externalId;

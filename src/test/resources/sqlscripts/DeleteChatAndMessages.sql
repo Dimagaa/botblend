@@ -1,0 +1,7 @@
+DELETE
+FROM messages
+WHERE messages.id BETWEEN 1 AND 6;
+
+DELETE
+FROM chats
+WHERE chats.id BETWEEN 1 AND 3;
