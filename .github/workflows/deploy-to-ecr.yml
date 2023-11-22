@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 env:
   AWS_REGION: us-east-1
-  AWS_ASSUME_ROLE: arn:aws:iam::410123344539:role/github-botblend-role
+  AWS_ASSUME_ROLE: aws:iam::410123344539:role/github-botblend-role
 
 permissions:
   id-token: write
