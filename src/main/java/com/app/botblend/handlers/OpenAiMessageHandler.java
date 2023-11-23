@@ -5,7 +5,7 @@ import com.app.botblend.client.openai.model.CompletionRequest;
 import com.app.botblend.client.openai.model.OpenAiMessage;
 import com.app.botblend.client.telegram.MessageHandler;
 import com.app.botblend.service.MessagePersistenceService;
-import feign.RetryableException;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -60,7 +60,7 @@ public class OpenAiMessageHandler implements MessageHandler {
                     .choices().get(DEFAULT_CHOICE)
                     .message();
 
-        } catch (RetryableException e) {
+        } catch (FeignException e) {
             return OpenAiMessage.builder(
                             OpenAiMessage.Role.SYSTEM,
                             OVERLOADED_SERVER_MESSAGE)
