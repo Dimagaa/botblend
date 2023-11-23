@@ -26,7 +26,6 @@ import org.junit.jupiter.api.TestFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -47,7 +46,6 @@ class ChatControllerTest {
     private static final LocalDateTime CREATED_AT = LocalDateTime.of(
             2023, 10, 10, 10, 0, 0
     );
-    private static final Pageable PAGEABLE = Pageable.ofSize(10);
     private static final Chat FIRST_CHAT = new Chat();
     private static final Chat SECOND_CHAT = new Chat();
 
@@ -280,7 +278,6 @@ class ChatControllerTest {
         Assertions.assertEquals(requestDto.sender(), actual.sender());
         Assertions.assertEquals(requestDto.content(), actual.content());
     }
-
 
     @TestFactory
     @DisplayName("Send Message: Invalid Input - Return 400")

@@ -198,7 +198,6 @@ class ChatServiceImplTest {
         when(messageRepository.findAllByChatId(chatId, PAGEABLE)).thenReturn(messageList);
         when(messageMapper.toDto(any(Message.class))).thenReturn(expected);
 
-
         List<MessageDto> actual = chatService.getMessagesByChatId(chatId, PAGEABLE);
 
         Assertions.assertEquals(messageList.size(), actual.size(),
