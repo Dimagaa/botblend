@@ -18,9 +18,9 @@ import org.springframework.test.context.jdbc.Sql;
 class ChatRepositoryTest {
 
     private static final String INSERT_DATA_SCRIPT =
-            "classpath:sqlscripts/InsertChatAndMessages.sql";
+            "classpath:sqlscripts/insert-chats&messages.sql";
     private static final String DELETE_DATA_SCRIPT =
-            "classpath:sqlscripts/DeleteChatAndMessages.sql";
+            "classpath:sqlscripts/delete-chats&messages.sql";
     private static final LocalDateTime CREATED_AT = LocalDateTime.of(
             2023, 10, 10, 10, 0, 0
     );

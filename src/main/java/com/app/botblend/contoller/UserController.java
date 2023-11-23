@@ -42,6 +42,7 @@ public class UserController {
     )
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
     public UserDto register(@RequestBody @Valid UserRegisterRequestDto requestDto) {
         return userService.register(requestDto);
     }
@@ -52,7 +53,6 @@ public class UserController {
     )
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public UserDto update(@RequestBody @Valid UserRegisterRequestDto requestDto) {
         return userService.updateCurrentUser(requestDto);
     }
