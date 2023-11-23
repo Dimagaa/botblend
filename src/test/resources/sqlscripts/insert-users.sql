@@ -1,7 +1,3 @@
-INSERT INTO roles
-VALUES (1, 'ROLE_ADMIN');
-ALTER SEQUENCE roles_id_seq RESTART WITH 2;
-
 INSERT INTO users (id, email, password, first_name, last_name)
 VALUES (1, 'bob@test.app', '$2a$10$eNDxAZLdjj7A42', 'Bob', 'Smith'),
        (2, 'alice@test.app', '$2a$10$eNDxAZLdjj7A42', 'Alice', 'Smith'),
