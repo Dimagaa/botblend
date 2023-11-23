@@ -1,7 +1,7 @@
 DELETE
-FROM messages
-WHERE messages.id BETWEEN 1 AND 6;
+FROM messages;
+ALTER SEQUENCE  chats_id_seq RESTART WITH 1;
 
 DELETE
-FROM chats
-WHERE chats.id BETWEEN 1 AND 3;
+FROM chats;
+ALTER SEQUENCE  chats_id_seq RESTART WITH 1;

@@ -12,12 +12,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(
@@ -41,8 +43,8 @@ public class ChatController {
     }
 
     @Operation(
-            summary = "Get chat by ID",
-            description = "Retrieve a specific chat by its unique identifier"
+            summary = "Get messages by Chat ID",
+            description = "Retrieve messages for a specific chat by its unique identifier"
     )
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
@@ -64,6 +66,7 @@ public class ChatController {
     )
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/{chatId}")
+    @ResponseStatus(HttpStatus.CREATED)
     public MessageDto sendMessage(
             @PathVariable Long chatId,
             @RequestBody @Valid MessageSendRequestDto message
